@@ -4,7 +4,7 @@ require "http"
 
 module Bump
   class CLI
-    ROOT_URL = "https://bump.sh".freeze
+    ROOT_URL = ENV.fetch("BUMP_HOST", "https://bump.sh").freeze
     API_PATH = "/api/v1".freeze
     API_URL = ROOT_URL + API_PATH
 
