@@ -115,7 +115,11 @@ module Bump
             abort "Error : #{body["message"]} (status: #{response.code})"
           end
         rescue JSON::ParserError => e
-          abort "Unknown error (status: #{response.code})"
+          abort <<~ERR
+            Unknown error (status: #{response.code}):
+            due to #{e.inspect}
+            in #{response.inspect}
+          ERR
         end
 
         def display_validation_errors(body)
